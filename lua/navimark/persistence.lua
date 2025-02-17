@@ -1,15 +1,11 @@
 local M = {}
 
-local statepath = vim.fn.stdpath("state")
-if type(statepath) == "table" then
-  statepath = statepath[1]
-end
-local state_dir = vim.fs.joinpath(statepath, "navimark")
-local persist_file = vim.fs.joinpath(state_dir, "navimark.json")
+local local_nvim_dir = vim.fs.joinpath(vim.fn.getcwd(), ".nvim")
+local persist_file = vim.fs.joinpath(local_nvim_dir, "navimark.json")
 
 M.save = function(stacks)
   local json = vim.fn.json_encode(stacks)
-  vim.fn.mkdir(state_dir, "p")
+  vim.fn.mkdir(local_nvim_dir, "p")
   vim.fn.writefile({ json }, persist_file)
 end
 
