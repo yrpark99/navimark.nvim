@@ -1,7 +1,7 @@
 local M = {}
 
 local local_nvim_dir = vim.fn.getcwd()
-local persist_file = vim.fs.joinpath(local_nvim_dir, "navimark.json")
+local persist_file = vim.fs.joinpath(local_nvim_dir, ".navimark.json")
 
 M.save = function(stacks)
   for _, stack in ipairs(stacks) do
